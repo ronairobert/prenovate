@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useNewsItems } from '../hooks/useNewsItems'
 
 function Home() {
+  const { items, loading } = useNewsItems(5)
+
   return (
     <div className="page home">
       <section className="hero">
@@ -81,6 +84,31 @@ function Home() {
           <span />
           <span />
           <span />
+        </div>
+      </section>
+
+      <section className="news-feed">
+        <div className="section-label">Hirek & frissitesek</div>
+        <div className="news-list">
+          {loading && (
+            <p style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+              Betoltes...
+            </p>
+          )}
+          {items.map((item) => (
+            <div key={item.sys.id} className="news-item">
+              <div className="news-item-top">
+                {item.fields.tag && (
+                  <span className="news-tag">{item.fields.tag}</span>
+                )}
+                <span className="news-date">
+                  {new Date(item.fields.publishDate).toLocaleDateString('hu-HU')}
+                </span>
+              </div>
+              <div className="news-title">{item.fields.title}</div>
+              <div className="news-text">{item.fields.text}</div>
+            </div>
+          ))}
         </div>
       </section>
 

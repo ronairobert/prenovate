@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Booking from './pages/Booking'
 import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import Payment from './pages/Payment'
 
 function App() {
@@ -14,7 +15,6 @@ function App() {
   const location = useLocation()
   const { darkMode, toggle } = useTheme()
   const handleNavClick = () => setMenuOpen(false)
-  const hideFooter = location.pathname === '/fizetes'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,6 +87,7 @@ function App() {
           <Route path="/idopont" element={<Booking />} />
           <Route path="/idopontfoglalas" element={<Booking />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route
             path="/fizetes"
             element={
@@ -98,19 +99,6 @@ function App() {
         </Routes>
       </main>
 
-      {!hideFooter && (
-        <footer className="site-footer">
-          <div>
-            <p className="footer-title">Készen áll a felújításra?</p>
-            <p className="footer-text">
-              Kérdezzen bátran, és segítünk a következő lépésben.
-            </p>
-          </div>
-          <NavLink className="btn" to="/idopont">
-            Időpontot foglalok
-          </NavLink>
-        </footer>
-      )}
     </div>
   )
 }
