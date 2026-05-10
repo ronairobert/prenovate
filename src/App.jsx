@@ -3,6 +3,7 @@ import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import { useTheme } from './context/ThemeContext'
 import ProtectedRoute from './components/ProtectedRoute'
+import ConsentBanner from './components/ConsentBanner'
 import Home from './pages/Home'
 import Booking from './pages/Booking'
 import Blog from './pages/Blog'
@@ -97,6 +98,8 @@ function App() {
             }
           />
         </Routes>
+
+        <ConsentBanner />
       </main>
 
     </div>
