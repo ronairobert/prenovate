@@ -31,7 +31,8 @@ function Felmeres() {
     try {
       await fetch('https://script.google.com/macros/s/AKfycbzWwTi2uuXCS1r0hhyL_KNzOCA-BS-9wKKoeTQqFEkjWgOn4t8g8Y_Mg3-YZLvlDgzd6Q/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
           timestamp: new Date().toLocaleString('hu-HU'),
           ingatlan_tipus: form.type,
