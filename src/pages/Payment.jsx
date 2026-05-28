@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useBooking } from '../context/BookingContext'
 
 const plans = [
@@ -42,7 +43,8 @@ const formatPrice = (value) => `${value.toLocaleString('hu-HU')} Ft`
 function Payment() {
   const [selectedIndex, setSelectedIndex] = useState(1)
   const selectedPlan = plans[selectedIndex]
-  const { bookingData } = useBooking()
+  const { bookingData, confirmPayment } = useBooking()
+  const navigate = useNavigate()
 
   const bookingSummary = bookingData
     ? `Foglalás: ${bookingData.date || '—'} — ${bookingData.type || '—'}`
@@ -182,7 +184,14 @@ function Payment() {
                 <span className="order-total-value">{summary.total}</span>
               </div>
             </div>
-            <button type="button" className="pay-button">
+            <button
+              type="button"
+              className="pay-button"
+              onClick={() => {
+                confirmPayment()
+                navigate('/idopont')
+              }}
+            >
               Fizetés indítása
             </button>
             <div className="trust-row">

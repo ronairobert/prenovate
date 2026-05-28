@@ -6,6 +6,9 @@ import ProtectedRoute from './components/ProtectedRoute'
 import ConsentBanner from './components/ConsentBanner'
 import Home from './pages/Home'
 import Booking from './pages/Booking'
+import Felmeres from './pages/Felmeres'
+import Idopont from './pages/Idopont'
+import Koszonjuk from './pages/Koszonjuk'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Payment from './pages/Payment'
@@ -43,13 +46,13 @@ function App() {
           <NavLink to="/" end>
             Főoldal
           </NavLink>
-          <NavLink to="/idopont">Időpontfoglalás</NavLink>
+          <NavLink to="/idopontfoglalas">Időpontfoglalás</NavLink>
           <NavLink to="/blog">Blog</NavLink>
         </nav>
         <button type="button" onClick={toggle} className="theme-toggle">
           {darkMode ? '☀' : '☾'}
         </button>
-        <NavLink className="btn small" to="/idopont">
+        <NavLink className="btn small" to="/idopontfoglalas">
           Időpontot foglalok
         </NavLink>
         <button
@@ -70,13 +73,17 @@ function App() {
           <NavLink to="/" end onClick={handleNavClick}>
             Főoldal
           </NavLink>
-          <NavLink to="/idopont" onClick={handleNavClick}>
+          <NavLink to="/idopontfoglalas" onClick={handleNavClick}>
             Időpontfoglalás
           </NavLink>
           <NavLink to="/blog" onClick={handleNavClick}>
             Blog
           </NavLink>
-          <NavLink className="btn primary" to="/idopont" onClick={handleNavClick}>
+          <NavLink
+            className="btn primary"
+            to="/idopontfoglalas"
+            onClick={handleNavClick}
+          >
             Időpontot foglalok
           </NavLink>
         </div>
@@ -85,18 +92,27 @@ function App() {
       <main className="site-main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/idopont" element={<Booking />} />
           <Route path="/idopontfoglalas" element={<Booking />} />
+          <Route path="/felmeres" element={<Felmeres />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route
             path="/fizetes"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredStep="survey">
                 <Payment />
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/idopont"
+            element={
+              <ProtectedRoute requiredStep="payment">
+                <Idopont />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/koszonjuk" element={<Koszonjuk />} />
         </Routes>
 
         <ConsentBanner />
