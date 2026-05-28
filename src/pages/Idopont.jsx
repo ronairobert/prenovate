@@ -29,7 +29,7 @@ function Idopont() {
           }}
         >
           <InlineWidget
-            url="https://calendly.com/MEGRENDELO_NEVE/online-konzultacio"
+            url="https://calendly.com/ronainorbert02/jelenleti-konzultacio"
             styles={{ height: '700px', minWidth: '320px' }}
             pageSettings={{
               backgroundColor: '0d1f24',
